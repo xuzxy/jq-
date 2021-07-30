@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/jquery-3.2.1.min.js"></script>
+
+    <style type="text/css">
+       
+
+     yang {
+            font-size: 20px;
+            font-family: cursive;
+
+        }
+
+        .input-group {
+            margin: 0 auto;
+        }
+
+        #exampleInputAmount {
+            margin-right: 15px;
+            width: 280px;
+        }
+
+        #thead1 tr th {
+             
+             
+             font-weight: lighter;
+             text-align: center;
+        }
+      
+   
+    .Div {
+            border: 3px ridge rgba(80, 34, 122, 0.605);
+            margin: 0 auto;
+            text-align: center;
+            width: 750px;
+            height: 1000px;
+            border-style: dotted solid double dashed;
+
+        }
+        h5 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: lighter;
+            font-size:4ch;
+            }
+</style>
+ </head>
+<body>
+    <script>
+        
+        function getTimer() {
+            var date = new Date()
+            var week = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
+            var year = date.getFullYear()
+            var month = date.getMonth() + 1
+            var datee = date.getDate()
+            var day = date.getDay()
+            var time = year + '年' + month + '月' + datee + '日 ';
+            function getTimerr() {
+                var time = new Date()
+                var hour = time.getHours()
+                hour = hour < 10 ? '0' + hour : hour
+                var minute = time.getMinutes()
+                minute = minute < 10 ? '0' + minute : minute
+                var second = time.getSeconds()
+                second = second < 10 ? '0' + second : second
+                return hour + ':' + minute + ':' + second
+            }
+            return time + ' ' + getTimerr()+ ' ' +week[day]
+        }
+
+        function ad(params) {
+            var ss = $(params).prev().val()
+            var ti = getTimer()
+            
+            var v = $('<tr>' +
+                ' <td class="col">'+ss+'</td>' +
+                ' <td class="col">'+ti+'</td> ' +
+                '<td> ' +
+                ' <div> ' +
+                '        <button type="button" class="btn btn-default" onclick="sb(this)">button</button> ' +
+                '       <button onclick="rm(this)" type="button" class="btn btn-default">delete</button> ' +
+                '  </div> ' +
+                '</td> ' +
+                '</tr>)');
+            $('.layui-table tbody').prepend(v)
+            $(params).prev().val('');
+        }
+        function rm(params) {
+          $(params).parent().parent().parent().remove();
+          
+        }
+        function sb(params) {
+            $(params).parent().parent().parent().children('.col').css({color:'rgb(255, 25, 25)','text-decoration': 'line-through'});
+        }
+    </script>
+    <h5>jq作业</h5>
+    <div class="Div">
+        <yang><b>任务列表</b></yang>
+       <div class="input-group">
+            <input type="text" class="btn btn-default" id="exampleInputAmount" placeholder="输入要添加的任务" >
+            <button type="button" class="btn btn-info" id="btn1" onclick="ad(this)">add</button>
+        </div>
+         <div>
+            <table class="layui-table" lay-even lay-skin="line" lay-size="lg">
+                <colgroup>
+                    <col width="200">
+                    <col>
+                </colgroup>
+                <thead id="thead1">
+                    <tr>
+                    
+                        
+                         <th rowspan="2" width="53px" fixed="true"></th> 
+                        <th>任务</th>
+                         <th>时间</th>
+                        <th>选择</th>
+                         </tr>
+                </thead>
+                <tbody>
+                   
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</body>
+</html>
